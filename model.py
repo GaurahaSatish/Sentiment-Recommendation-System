@@ -36,7 +36,7 @@ user_recom = pkl.load(open('models/user_recommendation_sys.pkl','rb'))
 
 # In[4]:
 
-
+ # Sentiment model to Filtered out the top 5 products with the highest percentage of positive reviews
 def sentiment(recom_prod):
     df = transform[transform.name.isin(recom_prod)]
     tfidf_vectorizer_vectors = tfidf.transform(df['text'])
@@ -50,7 +50,7 @@ def sentiment(recom_prod):
 
 # In[5]:
 
-
+# First user recommendation to get top 20 product recommondation.
 def recommendation(user_input):
     recom = user_recom.loc[user_input.lower()].sort_values(ascending=False)[0:20].index
     return recom

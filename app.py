@@ -19,11 +19,11 @@ def predict():
     '''
     user_input = request.form['txtarea']
 
-    # First user recommendation
+    # First user recommendation to get top 20 product recommondation.
 
     recom_prods = model.recommendation(user_input)
     
-    # Sentiment model
+    # Sentiment model to Filtered out the top 5 products with the highest percentage of positive reviews
 
     output = model.sentiment(recom_prods)
 
