@@ -43,7 +43,7 @@ def sentiment(recom_prod):
     pred_data = xgb.predict(tfidf_vectorizer_vectors)
     predictions = [round(value) for value in pred_data]
     df['predicted'] = predictions
-    output_data = df[df['predicted']==1][['name', 'brand', 'categories']].drop_duplicates()[:5].reset_index(drop=True)
+    output_data = df[df['predicted']==1][['name',    'brand','categories']].drop_duplicates()[:5].reset_index(drop=True)
     
     return output_data
 
@@ -52,7 +52,7 @@ def sentiment(recom_prod):
 
 
 def recommendation(user_input):
-    recom = user_recom.loc[user_input].sort_values(ascending=False)[0:20].index
+    recom = user_recom.loc[user_input.lower()].sort_values(ascending=False)[0:20].index
     return recom
 
 
