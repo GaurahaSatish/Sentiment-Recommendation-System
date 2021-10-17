@@ -40,7 +40,7 @@ user_recom = pkl.load(open('models/user_recommendation_sys.pkl','rb'))
 def sentiment(recom_prod):
     df = transform[transform.name.isin(recom_prod)]
     tfidf_vectorizer_vectors = tfidf.transform(df['text'])
-    pred_data = xgb.predict(features)
+    pred_data = xgb.predict(tfidf_vectorizer_vectors)
     predictions = [round(value) for value in pred_data]
     df['predicted'] = predictions
     output_data = df[df['predicted']==1][['name', 'brand', 'categories']].drop_duplicates()[:5].reset_index(drop=True)
